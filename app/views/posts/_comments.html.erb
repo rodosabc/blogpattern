@@ -1,0 +1,20 @@
+<%if (@post.comments.any?)%>
+<table>
+  <thead>
+  <tr>
+    <th>Body</th>
+    <th>User</th>
+    <th colspan="2"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @post.comments.each do |comment| %>
+      <tr>
+        <td><%= comment.body %></td>
+        <td><%= comment.author %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+<%end%>
