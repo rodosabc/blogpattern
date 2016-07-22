@@ -1,4 +1,7 @@
 class CommentsController < ApplicationController
+
+  before_action :is_admin, only: [:edit,:update,:destroy]
+  before_action :is_user, only: [:new,:create]
   def new
 
   end
@@ -49,5 +52,16 @@ class CommentsController < ApplicationController
 
   def comment_params
     params.require(:comment).permit(:body,:post_id)
+  end
+
+  def is_admin
+    unless current_user.try(:admin?)
+      redirect_to post_path(Post.find(params[:post_id]))
+    end
+  end
+  def is_user
+    unless user_signed_in?
+      redirect_to post_path(Post.find(params[:post_id]))
+    end
   end
 end
