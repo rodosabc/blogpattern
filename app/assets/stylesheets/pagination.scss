@@ -1,11 +1,32 @@
-div.pagination > a{
-  display: none;
+.pagination {
+  margin: 20px 0 0;
 }
-
-div.pagination > em.current{
-  display: none;
+div.pagination > a,
+div.pagination > span {
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  padding: 15px 25px;
+  background-color: white;
+  border-radius: 0;
+  border: 1px solid #DDD;
+  text-decoration: none;
 }
-
-div.pagination > a.next_page{
-  display: inline;
+div.pagination > a:hover,
+div.pagination > a:focus {
+  color: white;
+  background-color: #0085A1;
+  border: 1px solid #0085A1;
+  text-decoration: none;
+}
+div.pagination .disabled > a,
+div.pagination .disabled > a:hover,
+div.pagination .disabled > a:focus,
+div.pagination .disabled > span {
+  color: #777777;
+  background-color: #333333;
+  cursor: not-allowed;
+  text-decoration: none;
 }

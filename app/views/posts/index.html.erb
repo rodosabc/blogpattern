@@ -20,13 +20,7 @@
         </div>
         <hr>
       <%end%>
-      <%= will_paginate @posts, :previous_label => '← Fresh posts', :previous_label_class =>  :next_label => 'Older posts →' %>
-      <!-- Pager -->
-      <ul class="pager">
-        <li class="next">
-          <a href="#">Older Posts &rarr;</a>
-        </li>
-      </ul>
+      <%= will_paginate @posts, :page_links => false,:previous_label => '← Fresh posts',:next_label => 'Older posts →' %>
     </div>
   </div>
 </div>
