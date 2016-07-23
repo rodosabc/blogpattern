@@ -1,26 +1,39 @@
-<%if (@post.comments.any?)%>
-<table>
-  <thead>
-  <tr>
-    <th>Body</th>
-    <th>User</th>
-    <th colspan="2"></th>
-  </tr>
-  </thead>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h3><%=pluralize(@post.comments.size, 'Comments')%></h3>
+    </div><!-- /col-sm-12 -->
+  </div><!-- /row -->
+  <hr>
+  <%=render :partial => 'comments/new', :object => @comment %>
+  <%if (@post.comments.any?)%>
+  <div class="row">
+    <% @post.comments.each do |comment| %>
+    <div class="col-sm-1">
+      <div class="thumbnail">
+        <img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+      </div><!-- /thumbnail -->
+    </div><!-- /col-sm-1 -->
 
-  <tbody>
-  <% @post.comments.each do |comment| %>
-      <tr>
-        <td><%= comment.body %></td>
-        <td><%= comment.author %></td>
-        <td><%if current_user.try(:admin?)%>
-              <%= link_to 'Edit', edit_post_comment_path(@post,comment) %> |
-              <%= link_to 'Destroy', post_comment_path(@post, comment),
+    <div class="col-sm-5">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <strong><%= comment.author %></strong>
+          <span class="text-muted">commented <%=time_tag(comment.created_at)%></span>
+          <%if current_user.try(:admin?)%>
+              <br>
+              <%= link_to 'Edit', edit_post_comment_path(@post,comment),:class => 'admin_action' %> |
+              <%= link_to 'Destroy', post_comment_path(@post, comment),:class => 'admin_action',
                           data: {:confirm => 'Are you sure?'}, :method => :delete %>
           <%end%>
-        </td>
-      </tr>
+        </div>
+        <div class="panel-body">
+          <%= comment.body %>
+        </div><!-- /panel-body -->
+      </div><!-- /panel panel-default -->
+    </div><!-- /col-sm-5 -->
+    <% end %>
+  </div>
   <% end %>
-  </tbody>
-</table>
-<%end%>
+
+</div><!-- /container -->

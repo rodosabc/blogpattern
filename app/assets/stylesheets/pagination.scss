@@ -1,0 +1,11 @@
+div.pagination > a{
+  display: none;
+}
+
+div.pagination > em.current{
+  display: none;
+}
+
+div.pagination > a.next_page{
+  display: inline;
+}
